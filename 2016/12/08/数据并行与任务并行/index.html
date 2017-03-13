@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="C#,多线程," />
 
 
 
@@ -84,21 +84,19 @@
 
 
 
-<meta name="description" content="&amp;lt;!DOCTYPE html&amp;gt;
-      about | Mingzheng                        var _hmt = _hmt || [];    (function() {      var hm = document.createElement(“script”);      hm.src = “//hm.baidu.com/hm.js?57e94d0">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://mingzhengjia.coding.me/about/about.html">
+<meta name="description" content="数据并行概念 是指同时对不同数据项完成相同操作的并行，并行量随着数据规模而增长。
+举例 数据并行即将相同的操作同时作用于不同的数据，数据并行编程模型提供给编程者一个全局的地址空间，一般这种形式的语言本身就提供并行执行的语义，因此对于编程者来说，只需要简单地指明执行什么样的并行操作和并行操作的对象，就实现了数据并行的编程　　比如对于数组运算，使得数组B和C的对应元素相加后送给A，则通过语句　　　　A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据并行与任务并行">
+<meta property="og:url" content="http://mingzhengjia.coding.me/2016/12/08/数据并行与任务并行/index.html">
 <meta property="og:site_name" content="Mingzheng">
-<meta property="og:description" content="&amp;lt;!DOCTYPE html&amp;gt;
-      about | Mingzheng                        var _hmt = _hmt || [];    (function() {      var hm = document.createElement(“script”);      hm.src = “//hm.baidu.com/hm.js?57e94d0">
-<meta property="og:image" content="http://mingzhengjia.coding.me/images/avatar.png">
-<meta property="og:updated_time" content="2016-11-24T08:07:26.855Z">
+<meta property="og:description" content="数据并行概念 是指同时对不同数据项完成相同操作的并行，并行量随着数据规模而增长。
+举例 数据并行即将相同的操作同时作用于不同的数据，数据并行编程模型提供给编程者一个全局的地址空间，一般这种形式的语言本身就提供并行执行的语义，因此对于编程者来说，只需要简单地指明执行什么样的并行操作和并行操作的对象，就实现了数据并行的编程　　比如对于数组运算，使得数组B和C的对应元素相加后送给A，则通过语句　　　　A">
+<meta property="og:updated_time" content="2016-12-10T07:57:57.337Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="&amp;lt;!DOCTYPE html&amp;gt;
-      about | Mingzheng                        var _hmt = _hmt || [];    (function() {      var hm = document.createElement(“script”);      hm.src = “//hm.baidu.com/hm.js?57e94d0">
-<meta name="twitter:image" content="http://mingzhengjia.coding.me/images/avatar.png">
+<meta name="twitter:title" content="数据并行与任务并行">
+<meta name="twitter:description" content="数据并行概念 是指同时对不同数据项完成相同操作的并行，并行量随着数据规模而增长。
+举例 数据并行即将相同的操作同时作用于不同的数据，数据并行编程模型提供给编程者一个全局的地址空间，一般这种形式的语言本身就提供并行执行的语义，因此对于编程者来说，只需要简单地指明执行什么样的并行操作和并行操作的对象，就实现了数据并行的编程　　比如对于数组运算，使得数组B和C的对应元素相加后送给A，则通过语句　　　　A">
 
 
 
@@ -119,16 +117,10 @@
 
 
 
-  <link rel="canonical" href="http://mingzhengjia.coding.me/about/about.html"/>
+  <link rel="canonical" href="http://mingzhengjia.coding.me/2016/12/08/数据并行与任务并行/"/>
 
 
-  <title>
-  
-
-  
-    about | Mingzheng
-  
-</title>
+  <title> 数据并行与任务并行 | Mingzheng </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="en">
@@ -159,7 +151,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -282,11 +274,180 @@
 
   <div id="posts" class="posts-expand">
     
-    
-      <p>&lt;!DOCTYPE html&gt;</p>
-  <html class="light page-about"><br><br><br><head><br>  <meta charset="utf-8"><br><br>  <title>about | Mingzheng</title><br><br>  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><br><br><br>    <meta name="keywords" content="mingzhengjia,前端,设计,Hexo主题,前端开发,用户体验,设计,frontend,design,nodejs,JavaScript"><br><br><br>  <meta property="og:type" content="website"><br><meta property="og:title" content="about"><br><meta property="og:url" content="http://mingzhengjia.coding.me/about/index.html"><br><meta property="og:site_name" content="Mingzheng"><br><meta property="og:updated_time" content="2016-10-15T10:00:53.831Z"><br><meta name="twitter:card" content="summary"><br><meta name="twitter:title" content="about"><br><br><br><br><br>    <link rel="icon" href="/favicon.ico"><br><br><br>  <link href="/css/styles.css?v=028c63b1" rel="stylesheet"><br><br><br><br>    <link rel="stylesheet" href="/css/personal-style.css"><br><br><br><br><br><br>  <script type="text/javascript"><br>    var _hmt = _hmt || [];<br>    (function() {<br>      var hm = document.createElement(“script”);<br>      hm.src = “//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0”;<br>      var s = document.getElementsByTagName(“script”)[0];<br>      s.parentNode.insertBefore(hm, s);<br>    })();<br>  </script><br><br><br></head><br><br><body><br><br><br><br>    <span id="toolbox-mobile" class="toolbox-mobile">Home</span><br><br><br>  <div class="content content-about"><br>  <div class="page-header"><br><br><br>    <div class="breadcrumb"><br>    <a class="toolbox-entry" href="/"><br><br><br>      <i class="icon-home"></i><br>    </a><br>      <div class="location">About</div><br>      <i class="icon-location"></i><br>    </div><br><br><br><br><br><br><br><br>  <div class="box-blog-info"><br>    <a class="avatar" href="/"><br>      <img src="/images/avatar.png" alt=""><br>    </a><br>    <div class="info"><br>      <h3 class="name" style="font-family: calligraffittiregular"><br>        mingzhengjia<br>      </h3><br>      <div class="slogan"><br>        Beyond the pots and pans<br>      </div><br>    </div><br>  </div><br><br></div><br><br><br>  <ul class="about-list"><br><br>      <li class="about-item"><br><br>          <i class="icon icon-user dot dot-0"></i><br><br><br><br><br>            <div class="text">Scut，1991，Spring.</div><br><br>            <div class="text">喜欢折腾，微微擅长编程.</div><br><br>            <div class="text">桌面应用开发工程师，常用C#/WPF/C/C++</div><br><br><br><br>      </li><br><br>      <li class="about-item"><br><br>          <i class="icon icon-github dot dot-1"></i><br><br><br><br>          <div class="text"><br>            <span>Github</span><br><br>              <a rel="noopener noreferrer" target="_blank" class="text-value-url" href="https://github.com/mingzhengjia">@mingzhengjia</a><br><br>          </div><br><br><br>      </li><br><br><br><br>      <li class="about-item"><br><br>          <i class="icon icon-mail dot dot-3"></i><br><br><br><br>          <div class="text"><br>            <span>Gmail</span><br><br>              <a rel="noopener noreferrer" target="_blank" class="text-value-url" href="mailto:mingzhengjia@gmail.com">mingzhengjia@gmail.com</a><br><br>          </div><br><br><br>      </li><br><br>      <li class="about-item"><br><br>          <i class="icon icon-location dot dot-4"></i><br><br><br><br>          <div class="text"><br>            <span></span><br><br>              <span>Suzhou</span><br><br>          </div><br><br><br>      </li><br><br>  </ul><br><br></div><br><br><br>  <a id="backTop" class="back-top"><br>    <i class="icon-angle-up"></i><br>  </a><br><br><br><br><br><br><br><br><br><br><br>  <script type="text/javascript"><br>  function loadScript(url, callback) {<br>    var script = document.createElement(‘script’)<br>    script.type = ‘text/javascript’;<br><br>    if (script.readyState) { //IE<br>      script.onreadystatechange = function() {<br>        if (script.readyState == ‘loaded’ ||<br>          script.readyState == ‘complete’) {<br>          script.onreadystatechange = null;<br>          callback();<br>        }<br>      };<br>    } else { //Others<br>      script.onload = function() {<br>        callback();<br>      };<br>    }<br><br>    script.src = url;<br>    document.getElementsByTagName(‘head’)[0].appendChild(script);<br>  }<br><br>  window.onload = function() {<br>    loadScript(‘/js/bundle.js?235683’, function() {<br>      // load success<br>    });<br>  }<br></script><br><br></body><br></html>
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据并行与任务并行
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-12-08T20:00:00+08:00" content="2016-12-08">
+              2016-12-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/多线程/" itemprop="url" rel="index">
+                    <span itemprop="name">多线程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/08/数据并行与任务并行/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/08/数据并行与任务并行/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-eye"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="数据并行"><a href="#数据并行" class="headerlink" title="数据并行"></a>数据并行</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p> 是指同时对不同数据项完成相同操作的并行，并行量随着数据规模而增长。</p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p> 数据并行即将相同的操作同时作用于不同的数据，数据并行编程模型提供给编程者一个全局的地址空间，一般这种形式的语言本身就提供并行执行的语义，因此对于编程者来说，只需要简单地指明执行什么样的并行操作和并行操作的对象，就实现了数据并行的编程<br>　　比如对于数组运算，使得数组B和C的对应元素相加后送给A，则通过语句<br>　　　　A=B+C（或其它的表达方式）<br>就能够实现上述功能，使并行机对B、C的对应元素并行相加，并将结果并行赋给A。因此数据并行的表达是相对简单和简洁的，它不需要编程者关心并行机是如何对该操作进行并行执行的。 </p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span>[] array1 = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; <span class="number">45</span>, <span class="number">36</span>, <span class="number">18</span>, <span class="number">53</span>, <span class="number">72</span>, <span class="number">30</span>, <span class="number">48</span>, <span class="number">93</span>, <span class="number">15</span>, <span class="number">3</span> &#125;;</div><div class="line"><span class="keyword">int</span>[] array2 = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; <span class="number">3</span>, <span class="number">46</span>, <span class="number">3</span>, <span class="number">53</span>, <span class="number">72</span>, <span class="number">30</span>, <span class="number">48</span>, <span class="number">93</span>, <span class="number">15</span>, <span class="number">3</span> &#125;;</div><div class="line"><span class="keyword">int</span>[] array3 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</div><div class="line">Parallel.For(<span class="number">0</span>, array1.Length, i =&gt; &#123;</div><div class="line">    array3[i] = array1[i] + array2[i];</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>输出结果：<br><code>array3= {48,82,21,106,144,60,96,186,30,6}；</code></p>
+<h1 id="任务并行"><a href="#任务并行" class="headerlink" title="任务并行"></a>任务并行</h1><h2 id="任务并行性则是指您有多个任务需要完成。"><a href="#任务并行性则是指您有多个任务需要完成。" class="headerlink" title="任务并行性则是指您有多个任务需要完成。"></a>任务并行性则是指您有多个任务需要完成。</h2><h2 id="举例-1"><a href="#举例-1" class="headerlink" title="举例"></a>举例</h2><p>例如您有一个很大的数据集，您想知道该数据集的最小值、最大值和平均值。这只是一个简单的例子，但您可以让不同的处理器针对同一个数据集分别计算不同的答案。因此，任务并行性是一种不同的看待问题的方式，它不是通过数据分解让不同的处理器同时做同一项工作，而是对任务进行分解。</p>
+<h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> T Min&lt;T&gt;(T[] items)&#123;</div><div class="line">    <span class="keyword">return</span> items.Min();</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> T Max&lt;T&gt;(T[] items) &#123;</div><div class="line">    <span class="keyword">return</span> items.Max();</div><div class="line">&#125;</div><div class="line">Task&lt;<span class="keyword">int</span>&gt; leftTask = Task.Run(() =&gt; mx.Max(<span class="built_in">array</span>));</div><div class="line">Task&lt;<span class="keyword">int</span>&gt; rightTask = Task.Run(() =&gt; mx.Min(<span class="built_in">array</span>));</div><div class="line">Task.WaitAll(leftTask, rightTask);</div><div class="line">Console.WriteLine(leftTask.Result);</div><div class="line">Console.WriteLine(rightTask.Result);</div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AsyncOperation</span><span class="params">()</span></span>&#123;</div><div class="line">    Console.WriteLine(<span class="string">"AsyncOperation"</span>);</div><div class="line">&#125;</div><div class="line">ThreadPool.QueueUserWorkItem(AsyncOperation);</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag">#C#</a>
+          
+            <a href="/tags/多线程/" rel="tag">#多线程</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/24/多线程基础1/" rel="next" title="多线程基础">
+                <i class="fa fa-chevron-left"></i> 多线程基础
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/10/SVN服务器搭建/" rel="prev" title="SVN服务器搭建">
+                SVN服务器搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/12/08/数据并行与任务并行/"
+     data-title="数据并行与任务并行"
+     data-content=""
+     data-url="http://mingzhengjia.coding.me/2016/12/08/数据并行与任务并行/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
   </div>
 
 
@@ -295,6 +456,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/08/数据并行与任务并行/"
+           data-title="数据并行与任务并行" data-url="http://mingzhengjia.coding.me/2016/12/08/数据并行与任务并行/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -314,8 +483,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -385,6 +563,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据并行"><span class="nav-number">1.</span> <span class="nav-text">数据并行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#举例"><span class="nav-number">1.2.</span> <span class="nav-text">举例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">1.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#任务并行"><span class="nav-number">2.</span> <span class="nav-text">任务并行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#任务并行性则是指您有多个任务需要完成。"><span class="nav-number">2.1.</span> <span class="nav-text">任务并行性则是指您有多个任务需要完成。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#举例-1"><span class="nav-number">2.2.</span> <span class="nav-text">举例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现-1"><span class="nav-number">2.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -497,6 +686,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 

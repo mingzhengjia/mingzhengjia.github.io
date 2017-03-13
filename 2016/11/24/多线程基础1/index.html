@@ -1,0 +1,886 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="多线程," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="多线程简介及概念所有示例都假定已经引用了以下命名空间：
+12using System;using System.Threading;
+12345678910111213141516class ThreadTest&amp;#123;  static void Main()  &amp;#123;    Thread t = new Thread (WriteY);  // 创建新线程    t.Start();">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多线程基础">
+<meta property="og:url" content="http://mingzhengjia.coding.me/2016/11/24/多线程基础1/index.html">
+<meta property="og:site_name" content="Mingzheng">
+<meta property="og:description" content="多线程简介及概念所有示例都假定已经引用了以下命名空间：
+12using System;using System.Threading;
+12345678910111213141516class ThreadTest&amp;#123;  static void Main()  &amp;#123;    Thread t = new Thread (WriteY);  // 创建新线程    t.Start();">
+<meta property="og:image" content="http://p1.bqimg.com/567571/a66e5969685250b9.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/9720954efa0448e2.png">
+<meta property="og:updated_time" content="2016-11-27T10:52:22.727Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多线程基础">
+<meta name="twitter:description" content="多线程简介及概念所有示例都假定已经引用了以下命名空间：
+12using System;using System.Threading;
+12345678910111213141516class ThreadTest&amp;#123;  static void Main()  &amp;#123;    Thread t = new Thread (WriteY);  // 创建新线程    t.Start();">
+<meta name="twitter:image" content="http://p1.bqimg.com/567571/a66e5969685250b9.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6331468735026562000',
+      author: '主编大人'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://mingzhengjia.coding.me/2016/11/24/多线程基础1/"/>
+
+
+  <title> 多线程基础 | Mingzheng </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="en">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?e320e7369e89ca101abd665df22874c7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mingzheng</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/about.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                多线程基础
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-11-24T20:00:00+08:00" content="2016-11-24">
+              2016-11-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/多线程/" itemprop="url" rel="index">
+                    <span itemprop="name">多线程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/24/多线程基础1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/24/多线程基础1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-eye"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><h2 id="简介及概念"><a href="#简介及概念" class="headerlink" title="简介及概念"></a>简介及概念</h2><p>所有示例都假定已经引用了以下命名空间：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">using</span> System;</div><div class="line"><span class="keyword">using</span> System.Threading;</div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> ThreadTest</div><div class="line">&#123;</div><div class="line">  <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">()</span></span></div><div class="line">  &#123;</div><div class="line">    Thread t = <span class="keyword">new</span> Thread (WriteY);  <span class="comment">// 创建新线程</span></div><div class="line">    t.Start();                       <span class="comment">// 启动新线程，执行WriteY()</span></div><div class="line"></div><div class="line">    <span class="comment">// 同时，在主线程做其它事情</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) Console.Write (<span class="string">"x"</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">WriteY</span><span class="params">()</span></span></div><div class="line">  &#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) Console.Write (<span class="string">"y"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">xxxxxxxxxxxxxxxxyyyyyyyyyyyyyyyyyyyyyy</div><div class="line">xxxxxxxxxxxxxxxxxxxxxxxxxyyyyyyyyyyyyy</div><div class="line">yyyyyyyyyyyyyyyyxxxxxxxxxxxxxxxxxxxxxx</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>主线程创建了一个新线程t来不断打印字母 “ y “，与此同时，主线程在不停打印字母 “ x “。</p>
+<p><img src="http://p1.bqimg.com/567571/a66e5969685250b9.png" alt=""></p>
+<p>举个例子，为什么用多线程</p>
+<p>如 统计3的个数问题。<br>在单线程中我们可以这样写<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Count3s4Single</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">array</span>.Length; i++) &#123;</div><div class="line">    	<span class="keyword">if</span> (<span class="built_in">array</span>[i] == <span class="number">3</span>) &#123;</div><div class="line">    		++count;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> count;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其实我们可以并行实现，将数组划分一下，使得每个线程负责1/t数组的统计3的个数的工作，其中t是线程数。</p>
+<p><img src="http://i1.piimg.com/567571/9720954efa0448e2.png" alt=""></p>
+<p>来看代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span>[] <span class="built_in">array</span> = &#123; <span class="number">3</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span> &#125;;</div><div class="line"><span class="keyword">static</span> <span class="keyword">int</span> <span class="number">_</span>threadNums = <span class="number">4</span>;</div><div class="line"><span class="keyword">int</span> <span class="number">_</span>count = <span class="number">0</span>;</div><div class="line">Thread[] threads = <span class="keyword">new</span> Thread[<span class="number">_</span>threadNums];</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Count3s4Thread</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="number">_</span>count = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">_</span>threadNums; i++) &#123;</div><div class="line">    	threads[i] = <span class="keyword">new</span> Thread(() =&gt; count3s_threadUnsafe(i));</div><div class="line">        threads[i].Start();</div><div class="line">        threads[i].Join();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">_</span>count;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">count3s_threadUnsafe</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> lengthPerthread = <span class="built_in">array</span>.Length / <span class="number">_</span>threadNums;</div><div class="line">    <span class="keyword">int</span> start = id * lengthPerthread;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt; start + lengthPerthread; i++) &#123;</div><div class="line">    	<span class="keyword">if</span> (<span class="built_in">array</span>[i] == <span class="number">3</span>) &#123;</div><div class="line">        	<span class="number">_</span>count++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上边代码有一个问题就是_count变量会出现竞争条件，一般情况下得不到正确的值，原因是在进行加法的时候可能会出现两个线程同时访问。<br>造成结果不一致。</p>
+<p>来看一个线程安全的版本</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">private</span> readonly object <span class="number">_</span>thisLock = <span class="keyword">new</span> object();</div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">count3s_threadSafe1</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</div><div class="line">     <span class="keyword">int</span> lengthPerthread = <span class="built_in">array</span>.Length / <span class="number">_</span>threadNums;</div><div class="line">     <span class="keyword">int</span> start = id * lengthPerthread;</div><div class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt; start + lengthPerthread; i++) &#123;</div><div class="line">         <span class="keyword">if</span> (<span class="built_in">array</span>[i] == <span class="number">3</span>) &#123;</div><div class="line">             lock (<span class="number">_</span>thisLock) &#123;</div><div class="line">			 <span class="number">_</span>count++;</div><div class="line">             &#125;</div><div class="line">         &#125;</div><div class="line">     &#125;        </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>来看看AutoResetEvent类</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Program &#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> AutoResetEvent <span class="number">_</span>workerEvent = <span class="keyword">new</span> AutoResetEvent(<span class="literal">false</span>);</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> AutoResetEvent <span class="number">_</span>mainEvent = <span class="keyword">new</span> AutoResetEvent(<span class="literal">false</span>);</div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">(<span class="built_in">string</span>[] args)</span></span>&#123;</div><div class="line">       var t = <span class="keyword">new</span> Thread(() =&gt; Process(<span class="number">10</span>));</div><div class="line">       t.Start();</div><div class="line">       Console.WriteLine(<span class="string">"开始等待另一个工作完成，调用WaitOne()方法阻塞当前线程"</span>);</div><div class="line">       <span class="number">_</span>workerEvent.WaitOne();</div><div class="line">       Console.WriteLine(<span class="string">"第一个操作已经完成"</span>);</div><div class="line">       Console.WriteLine(<span class="string">"开始执行主线程，要工作5秒"</span>);</div><div class="line">       Thread.Sleep(TimeSpan.FromSeconds(<span class="number">5</span>));</div><div class="line">       <span class="number">_</span>mainEvent.Set();</div><div class="line">       Console.WriteLine(<span class="string">"现在工作线程开始运行第二个操作"</span>);</div><div class="line">       <span class="number">_</span>workerEvent.WaitOne();</div><div class="line">       Console.WriteLine(<span class="string">"第二个操作完成!"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Process</span><span class="params">(<span class="keyword">int</span> seconds)</span> </span>&#123;</div><div class="line">       Console.WriteLine(<span class="string">"Hi，主线程，我是工作线程的第一个工作，开始一个很长时间的操作"</span>);</div><div class="line">       Thread.Sleep(TimeSpan.FromSeconds(seconds));</div><div class="line">       Console.WriteLine(<span class="string">"工作了"</span>+seconds+<span class="string">"秒， 第一个工作完成，发个信号给主线程"</span>);</div><div class="line">       <span class="number">_</span>workerEvent.Set();</div><div class="line">       Console.WriteLine(<span class="string">"等待主线程完成工作"</span>);</div><div class="line">       <span class="number">_</span>mainEvent.WaitOne();</div><div class="line">       Console.WriteLine(<span class="string">"Hi，主线程，我是工作线程的第二个工作，现在我开始第二个工作"</span>);</div><div class="line">       Thread.Sleep(TimeSpan.FromSeconds(seconds));</div><div class="line">       Console.WriteLine(<span class="string">"第二个工作完成，发个信号给主线程"</span>);</div><div class="line">       <span class="number">_</span>workerEvent.Set();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>来看看死锁</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Program</div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Object objA = <span class="keyword">new</span> Object();</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Object objB = <span class="keyword">new</span> Object();</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">LockA</span><span class="params">()</span></span>&#123;</div><div class="line">        lock (objA)&#123;</div><div class="line">            Thread.Sleep(<span class="number">1000</span>);</div><div class="line">            lock (objB)&#123;</div><div class="line">			&#125;</div><div class="line">        &#125;</div><div class="line">        Console.WriteLine(<span class="string">"LockA"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">LockB</span><span class="params">()</span></span>&#123;</div><div class="line">        lock (objA)&#123;</div><div class="line">            Thread.Sleep(<span class="number">2000</span>);</div><div class="line">            lock (objB)&#123;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        Console.WriteLine(<span class="string">"LockB"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">    	Thread threadA = <span class="keyword">new</span> Thread(LockA);</div><div class="line">        Thread threadB = <span class="keyword">new</span> Thread(LockB);</div><div class="line">        threadA.Start();</div><div class="line">        threadB.Start();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>统计3另一种解答<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] private_count = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">_</span>threadNums];</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">count3s_threadSafe2</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> lengthPerthread = <span class="built_in">array</span>.Length / <span class="number">_</span>threadNums;</div><div class="line">    <span class="keyword">int</span> start = id * lengthPerthread;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt; start + lengthPerthread; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">array</span>[i] == <span class="number">3</span>) &#123;</div><div class="line">            private_count[id]++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    lock (<span class="number">_</span>thisLock) &#123;</div><div class="line">        <span class="number">_</span>count += private_count[id];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Join and sleep</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  Thread t = <span class="keyword">new</span> Thread (Go);</div><div class="line">  t.Start();</div><div class="line">  t.Join();</div><div class="line">  Console.WriteLine (<span class="string">"Thread t has ended!"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Go</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</div><div class="line">      Thread.Sleep(<span class="number">500</span>);</div><div class="line">      Console.Write (<span class="string">"y"</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> EventWaitHandle <span class="number">_</span>ready = <span class="keyword">new</span> AutoResetEvent(<span class="literal">false</span>);</div><div class="line"><span class="keyword">static</span> EventWaitHandle <span class="number">_</span>go = <span class="keyword">new</span> AutoResetEvent(<span class="literal">false</span>);</div><div class="line"><span class="keyword">static</span> <span class="built_in">string</span> <span class="number">_</span>message;</div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">(<span class="built_in">string</span>[] args)</span></span>&#123;</div><div class="line">    <span class="keyword">new</span> Thread(Work).Start();</div><div class="line">    <span class="number">_</span>ready.WaitOne();                  <span class="comment">// 首先等待工作线程就绪</span></div><div class="line">    <span class="number">_</span>message = <span class="string">"ooo"</span>;</div><div class="line">    <span class="number">_</span>go.Set();                         <span class="comment">// 通知工作线程执行</span></div><div class="line">    <span class="number">_</span>ready.WaitOne();</div><div class="line">    <span class="number">_</span>message = <span class="string">"hhh"</span>;  <span class="comment">// 给工作线程其它信息</span></div><div class="line">    <span class="number">_</span>go.Set();</div><div class="line">    <span class="number">_</span>ready.WaitOne();</div><div class="line">    <span class="number">_</span>message = null;    <span class="comment">// 发信号通知工作线程退出</span></div><div class="line">    <span class="number">_</span>go.Set();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Work</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">       <span class="number">_</span>ready.Set();                          <span class="comment">// 表示我们准备好了</span></div><div class="line">      <span class="number">_</span>go.WaitOne();                         <span class="comment">// 等待开始</span></div><div class="line">      <span class="keyword">if</span> (<span class="number">_</span>message == null) <span class="keyword">return</span>;        <span class="comment">// 优雅地退出</span></div><div class="line">      Console.WriteLine(<span class="number">_</span>message);</div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/多线程/" rel="tag">#多线程</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/22/单例模式/" rel="next" title="单例模式">
+                <i class="fa fa-chevron-left"></i> 单例模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/08/数据并行与任务并行/" rel="prev" title="数据并行与任务并行">
+                数据并行与任务并行 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/11/24/多线程基础1/"
+     data-title="多线程基础"
+     data-content=""
+     data-url="http://mingzhengjia.coding.me/2016/11/24/多线程基础1/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/24/多线程基础1/"
+           data-title="多线程基础" data-url="http://mingzhengjia.coding.me/2016/11/24/多线程基础1/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Mingzheng Jia" />
+          <p class="site-author-name" itemprop="name">Mingzheng Jia</p>
+          <p class="site-description motion-element" itemprop="description">Beyond the pots and pans</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/mingzhengjia" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/mingzhengjia" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#多线程"><span class="nav-number">1.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介及概念"><span class="nav-number">1.1.</span> <span class="nav-text">简介及概念</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mingzheng Jia</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"mingzhengjia"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
